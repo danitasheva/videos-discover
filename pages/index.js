@@ -3,7 +3,6 @@ import { Roboto_Slab } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Banner from "@/components/banner/banner";
 import Navbar from "@/components/navbar/navbar";
-import Card from "@/components/card/card";
 import SectionCards from "@/components/card/section-cards";
 import {
   getVideos,
@@ -22,7 +21,6 @@ const robotoSlab = Roboto_Slab({
 
 export async function getServerSideProps(context) {
   const { userId, token } = await redirectUser(context);
-  console.log({ userId, token });
   if (!userId) {
     return {
       props: {},
@@ -34,15 +32,14 @@ export async function getServerSideProps(context) {
   }
 
   const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
-  console.log({ watchItAgainVideos });
   const duneVideos = await getVideos("dune part two");
-  // const travelVideos = await getVideos("travel europe");
-  // const productivityVideos = await getVideos("Productivity");
-  // const popularVideos = await getPopularVideos();
+  const travelVideos = await getVideos("travel europe");
+  const productivityVideos = await getVideos("Productivity");
+  const popularVideos = await getPopularVideos();
   // const duneVideos = [];
-  const travelVideos = [];
-  const productivityVideos = [];
-  const popularVideos = [];
+  // const travelVideos = [];
+  // const productivityVideos = [];
+  // const popularVideos = [];
   return {
     props: {
       duneVideos,
@@ -61,8 +58,6 @@ export default function Home({
   productivityVideos,
   watchItAgainVideos = [],
 }) {
-  // console.log({ magic });
-  // startFetchMyQuery();
   return (
     <div styles={styles.container} className={robotoSlab.className}>
       <Head>

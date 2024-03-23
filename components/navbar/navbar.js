@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { magic } from "@/lib/magic-client";
-import logout from "@/pages/api/logout";
 
 export default function Navbar() {
   const [username, setUsername] = useState("");
@@ -17,9 +16,8 @@ export default function Navbar() {
     try {
       const { email, publicAddress } = await magic.user.getMetadata();
       const didToken = await magic.user.getIdToken();
-      console.log({ didToken });
+
       if (email) {
-        console.log({ email, publicAddress });
         setUsername(email);
         setDidToken(didToken);
       }
@@ -31,10 +29,6 @@ export default function Navbar() {
   const handleSignOut = async (e) => {
     e.preventDefault();
     try {
-      // await magic.user.logout();
-      // console.log("isLoggedIn:", await magic.user.isLoggedIn()); // => `false`
-      // router.push("/login");
-
       const response = await fetch("/api/logout", {
         method: "POST",
         headers: {

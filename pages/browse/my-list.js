@@ -2,7 +2,6 @@ import Head from "next/head";
 import NavBar from "@/components/navbar/navbar";
 
 import SectionCards from "@/components/card/section-cards";
-// import { useRedirectUser } from "@/utils/redirectUser";
 import { redirectUser } from "@/utils/redirectUser";
 import { getMyList } from "@/lib/videos";
 import styles from "@/styles/MyList.module.css";
@@ -37,7 +36,6 @@ export async function getServerSideProps(context) {
 }
 
 const MyList = ({ myListVideos }) => {
-  console.log({ myListVideos });
   return (
     <div className={robotoSlab.className}>
       <Head>

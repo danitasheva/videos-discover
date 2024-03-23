@@ -21,8 +21,6 @@ export default function Login() {
   const router = useRouter();
 
   useEffect(() => {
-    // console.log({ router });
-
     const handleComplete = () => {
       setLoading(false);
     };
@@ -39,10 +37,9 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     if (email) {
-      //  email: "dani_tasheva@abv.bg"
       try {
         const didToken = await magic.auth.loginWithMagicLink({ email });
-        // console.log({ didToken });
+
         if (didToken) {
           const response = await fetch("/api/login", {
             method: "POST",
@@ -55,7 +52,6 @@ export default function Login() {
           const loggedInResponse = await response.json();
 
           if (loggedInResponse.done) {
-            // console.log({ loggedInResponse });
             router.push("/");
           } else {
             setUserMsg("Something went wrong logging in");

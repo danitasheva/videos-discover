@@ -13,7 +13,6 @@ const robotoSlab = Roboto_Slab({
 });
 
 export default function App({ Component, pageProps }) {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -30,7 +29,6 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   useEffect(() => {
-    // console.log({ router });
     const handleComplete = () => {
       setLoading(false);
     };
@@ -48,5 +46,4 @@ export default function App({ Component, pageProps }) {
   ) : (
     <Component {...pageProps} className={robotoSlab.className} />
   );
-  // return <Component {...pageProps} />;
 }

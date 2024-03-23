@@ -19,24 +19,9 @@ const robotoSlab = Roboto_Slab({
 Modal.setAppElement("#__next");
 
 export async function getStaticProps(context) {
-  //   const res = await fetch('https://.../posts')
-  // data to fetch from API
-
-  //   const video = {
-  //     title: "Dune: Part Two",
-  //     publishTime: "Dec 12, 2023",
-  //     description:
-  //       "The saga continues as award-winning filmmaker Denis Villeneuve embarks on “Dune: Part Two,” the next chapter of Frank Herbert’s celebrated novel Dune, with an expanded all-star international ensemble cast. The film, from Warner Bros. Pictures and Legendary Pictures, is the highly anticipated follow-up to 2021’s six-time Academy Award-winning “Dune.” ",
-  //     channelTitle: "Warner Bros. Pictures",
-  //     viewCount: "16,135,652",
-  //   };
-
-  //   const videoId = "U2Qp5pL3ovA";
   const videoId = context.params.videoId;
 
   const videoArray = await getVideoById(videoId);
-
-  //   const posts = await res.json()
 
   return {
     props: {
@@ -50,9 +35,6 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  // const res = await fetch('https://.../posts')
-  // const posts = await res.json()
-
   const listVideos = ["U2Qp5pL3ovA", "YUzQa_1RCE", "hJ658qV-xAg&t=2s"];
 
   // Get the paths we want to pre-render based on posts
@@ -77,7 +59,6 @@ export default function Video({ video }) {
     const getRating = async () => {
       const response = await fetch(`/api/stats?videoId=${videoId}`, {});
       const data = await response.json();
-      console.log("getRating data", data);
       if (data?.length > 0) {
         const favourited = data[0].favourited;
         if (favourited === 1) {
@@ -107,7 +88,6 @@ export default function Video({ video }) {
 
     const ratingValue = val ? 1 : 0;
     const response = await runRating(ratingValue);
-    console.log("response handleToggleLike", response.json());
   };
 
   const handleToggleDislike = async () => {
@@ -118,7 +98,6 @@ export default function Video({ video }) {
 
     const ratingValue = !val ? 1 : 0;
     const response = await runRating(ratingValue);
-    console.log("response handleToggleLike", response.json());
   };
 
   const {
@@ -131,7 +110,6 @@ export default function Video({ video }) {
 
   return (
     <div style={styles.container} className={robotoSlab.className}>
-      {/* Video Page {router.query.videoId} */}
       <Navbar username={"Dani"} />
 
       <Modal
