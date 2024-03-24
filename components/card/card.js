@@ -11,6 +11,7 @@ export default function Card(props) {
     size = "medium",
     id,
     shouldScale = true,
+    title,
   } = props;
 
   const [imgSrc, setImgSrc] = useState(imgUrl);
@@ -33,7 +34,7 @@ export default function Card(props) {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} title={title}>
       <motion.div
         // whileHover={{ ...scale }}
         {...shouldHover}

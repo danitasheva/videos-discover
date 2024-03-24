@@ -18,6 +18,7 @@ export default function SectionCards(props) {
                 imgUrl={video.imgUrl}
                 size={size}
                 shouldScale={false}
+                title={video.title}
               />
             </Link>
           );
